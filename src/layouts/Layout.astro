@@ -1,0 +1,120 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{title} - Game Guides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script is:inline>
+    (function() {
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Menu">&#9776;</button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <a href={`${base}`}>Game Guides</a>
+    </div>
+
+    <div class="sidebar-tree">
+      <div class="sidebar-game open" id="game-rooc">
+        <div class="sidebar-game-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="chevron">&#9654;</span>
+          <span class="game-name">Ragnarok Origin Classic</span>
+        </div>
+        <div class="sidebar-game-body">
+          <div class="sidebar-category">
+            <div class="sidebar-category-title">Builds</div>
+            <a class="sidebar-link" href={`${base}ragnarok-origin-classic/professor-psychic-wave/`}>
+              <span class="sidebar-dot dot-build"></span>
+              Professor Psychic Wave
+            </a>
+            <a class="sidebar-link" href={`${base}ragnarok-origin-classic/bard-minstrel-build/`}>
+              <span class="sidebar-dot dot-build"></span>
+              Bard / Minstrel
+            </a>
+          </div>
+          <div class="sidebar-category">
+            <div class="sidebar-category-title">Dicas</div>
+            <a class="sidebar-link" href={`${base}ragnarok-origin-classic/10-dicas-essenciais/`}>
+              <span class="sidebar-dot dot-tips"></span>
+              10 Dicas de Progressao
+            </a>
+          </div>
+          <div class="sidebar-category">
+            <div class="sidebar-category-title">Instancias</div>
+            <a class="sidebar-link" href={`${base}ragnarok-origin-classic/nightmare-temple/`}>
+              <span class="sidebar-dot dot-pvp"></span>
+              Nightmare Temple
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="topbar">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Trocar tema">&#9790;</button>
+  </div>
+
+  <div class="layout">
+    <main class="main-content">
+      <slot />
+      <footer>Game Guides</footer>
+    </main>
+  </div>
+
+  <script is:inline>
+    (function() {
+      var toggle = document.getElementById('theme-toggle');
+      var sidebarToggle = document.getElementById('sidebar-toggle');
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebar-overlay');
+
+      function updateIcon() {
+        var theme = document.documentElement.getAttribute('data-theme');
+        toggle.textContent = theme === 'dark' ? '\u263E' : '\u2600';
+      }
+      updateIcon();
+
+      toggle.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+
+      sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('open');
+      });
+
+      overlay.addEventListener('click', function() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+      });
+    })();
+  </script>
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

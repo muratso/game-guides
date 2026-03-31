@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Home">
+  <div class="hero">
+    <h1>Game Guides</h1>
+    <p>Compilado de guias, builds e estrategias para jogos que eu curto. Conteudo em portugues, baseado em videos de criadores como King Spade e outros. Sempre atualizado com as ultimas metas e estrategias.</p>
+  </div>
+
+  <div class="section-label">Guias Recentes</div>
+
+  <div class="guide-grid">
+    <a class="guide-card type-pvp" href={`${base}ragnarok-origin-classic/nightmare-temple/`}>
+      <span class="guide-tag tag-pvp">Instancia</span>
+      <div class="guide-title">Nightmare Temple - Guia Completo</div>
+      <p class="guide-desc">Mecanicas detalhadas de todos os 5 chefes, reacoes elementais e estrategias para nao dar wipe.</p>
+    </a>
+    <a class="guide-card type-build" href={`${base}ragnarok-origin-classic/bard-minstrel-build/`}>
+      <span class="guide-tag tag-build">Build</span>
+      <div class="guide-title">Bard / Minstrel - Full Support</div>
+      <p class="guide-desc">Build completa de suporte com buffs, healing e sobrevivencia. Stats, equipamentos, cards, feathers e pets.</p>
+    </a>
+    <a class="guide-card type-tips" href={`${base}ragnarok-origin-classic/10-dicas-essenciais/`}>
+      <span class="guide-tag tag-tips">Dicas</span>
+      <div class="guide-title">10 Dicas de Progressao para Iniciantes</div>
+      <p class="guide-desc">Gerenciamento de recursos, pets, farm de cartas e sistemas de bonus que a maioria dos iniciantes ignora.</p>
+    </a>
+    <a class="guide-card type-build" href={`${base}ragnarok-origin-classic/professor-psychic-wave/`}>
+      <span class="guide-tag tag-build">Build</span>
+      <div class="guide-title">Professor Psychic Wave (AoE)</div>
+      <p class="guide-desc">Build de dano AoE continuo com empilhamento de camadas. Flexibilidade elemental superior ao Gravitation Field.</p>
+    </a>
+  </div>
+
+  <div class="section-label">Jogos</div>
+
+  <a class="game-card" href={`${base}ragnarok-origin-classic/`}>
+    <h3>Ragnarok Origin Classic</h3>
+    <p>MMORPG mobile baseado no universo de Ragnarok Online. Guias de builds, equipamentos, Divine Armaments e estrategias de farm.</p>
+  </a>
+</Layout>

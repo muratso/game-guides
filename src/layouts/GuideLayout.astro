@@ -1,0 +1,34 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  game: string;
+  gameSlug: string;
+  source?: string;
+}
+
+const { title, game, gameSlug, source } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<Layout title={title}>
+  <div class="breadcrumb">
+    <a href={`${base}`}>Home</a>
+    <span class="sep">/</span>
+    <a href={`${base}${gameSlug}/`}>{game}</a>
+    <span class="sep">/</span>
+    <span>{title}</span>
+  </div>
+
+  <article class="guide-content">
+    <slot />
+  </article>
+
+  {source && (
+    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+      <p style="font-size: 0.8rem; color: var(--text-muted);">
+        Assista ao <a href={source} target="_blank">tutorial completo</a> para ver as interfaces de menu e demonstracoes visuais.
+      </p>
+    </div>
+  )}
+</Layout>
